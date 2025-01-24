@@ -1,0 +1,308 @@
+{"DataProcessor":{
+    "referenceURIs":[
+        {"name":"type", "uri":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"},
+        {"name":"label", "uri":"http://www.w3.org/2000/01/rdf-schema#label"},
+        {"name":"identifier", "uri":"http://purl.org/dc/elements/1.1/identifier"},
+        {"name":"alternative", "uri":"http://purl.org/dc/terms/alternative"},
+        {"name":"skosConcept", "uri":"http://www.w3.org/2004/02/skos/core#Concept"},
+        {"name":"definedBy", "uri":"http://www.w3.org/2000/01/rdf-schema#isDefinedBy"}
+    ],
+    "sourceData":[
+        {
+            "name":"objectsAVD",
+            "url":"https://arxiuvalencia.eu/index.php/wp-json/wp/v2/objeto",
+            "paged":{
+                "pageAttribute":"page", 
+                "fromPage":"1",
+                "toPage":"2",
+                "itemsPerPageAttribute":"per_page",
+                "itemsPerPageValue":"100"
+        }
+        },
+        {
+            "name":"productsAVD",
+            "url":"https://arxiuvalencia.eu//index.php/wp-json/wp/v2/producto?post_status=publish&_fields=acf,_links,content,title,id",
+            "paged":{
+                    "pageAttribute":"page", 
+                    "fromPage":"1",
+                    "toPage":"46",
+                    "itemsPerPageAttribute":"per_page",
+                    "itemsPerPageValue":"100"
+        }
+        },
+        {
+            "name":"documentsAVD",
+            "url":"https://arxiuvalencia.eu//index.php/wp-json/wp/v2/documento?_fields=acf,_links,content,id",
+            "paged":{
+                    "pageAttribute":"page", 
+                    "fromPage":"1",
+                    "toPage":"4",
+                    "itemsPerPageAttribute":"per_page",
+                    "itemsPerPageValue":"100"
+            }
+        },        
+        {
+            "name":"citiesAVD",
+            "url":"https://arxiuvalencia.eu//index.php/wp-json/wp/v2/ciudad?_fields=acf,_links,content,id",
+            "paged":{
+                    "pageAttribute":"page", 
+                    "fromPage":"1",
+                    "toPage":"2",
+                    "itemsPerPageAttribute":"per_page",
+                    "itemsPerPageValue":"100"
+            }
+        },        
+        {
+            "name":"Geonames",
+            "url":"http://api.geonames.org/getJSON?username=jsevilla1",
+            "data":{
+                    "dataAttribute":"geonameId"
+            },
+            "file":"geonames.dat"            
+        },
+        {
+            "name":"personsAVD",
+            "url":"https://arxiuvalencia.eu//index.php/wp-json/wp/v2/persona?_fields=acf,_links,content,id",
+            "paged":{
+                    "pageAttribute":"page", 
+                    "fromPage":"1",
+                    "toPage":"2",
+                    "itemsPerPageAttribute":"per_page",
+                    "itemsPerPageValue":"100"
+            }
+        },
+        {
+            "name":"organizationsAVD",
+            "url":"https://arxiuvalencia.eu//index.php/wp-json/wp/v2/organizacion?_fields=acf,_links,content,id",
+            "paged":{
+                    "pageAttribute":"page", 
+                    "fromPage":"1",
+                    "toPage":"2",
+                    "itemsPerPageAttribute":"per_page",
+                    "itemsPerPageValue":"100"
+            }
+        },
+        {
+            "name":"TaxonomiesProduct",
+            "url":"https://arxiuvalencia.eu/index.php/wp-json/wp/v2/producto",
+            "data":{
+                    "dataAttribute":"/"
+            },
+            "file":"taxonomies.dat"            
+        }
+    ],
+    "ThesaurusTerms":[        
+        {"name":"Material", 
+         "type":"skosConcept",
+         "langAttribute":"lang",
+         "langValue":"es",
+         "urlBase":"http://silknow.uv.es/rest/v1/avd/",
+         "urlScheme":"topConcepts?scheme=https://data.arxiuvalencia.eu/vocabulary/conceptScheme_c35b75cd",
+         "urlNarrowers":"narrower?uri=",
+         "parentStartWord":"materia"
+        },        
+        {"name":"Component", 
+         "type":"skosConcept",
+         "langAttribute":"lang",
+         "langValue":"es",
+         "urlBase":"http://silknow.uv.es/rest/v1/avd/",
+         "urlScheme":"topConcepts?scheme=https://data.arxiuvalencia.eu/vocabulary/c_976dd93f",
+         "urlNarrowers":"narrower?uri=",
+         "parentStartWord":"component"
+        },
+        {"name":"Technique", 
+         "type":"skosConcept",
+         "langAttribute":"lang",
+         "langValue":"es",
+         "urlBase":"http://silknow.uv.es/rest/v1/avd/",
+         "urlScheme":"topConcepts?scheme=https://data.arxiuvalencia.eu/vocabulary/conceptScheme_c16a6f38",
+         "urlNarrowers":"narrower?uri=",
+         "parentStartWord":"procesos"
+        },
+        {"name":"Object", 
+         "type":"skosConcept",
+         "langAttribute":"lang",
+         "langValue":"es",
+         "urlBase":"http://silknow.uv.es/rest/v1/avd/",
+         "urlScheme":"topConcepts?scheme=https://data.arxiuvalencia.eu/vocabulary/conceptScheme_b626c7a2",
+         "urlNarrowers":"narrower?uri=",
+         "parentStartWord":"mobiliario"
+        }
+    ],
+    "Objects":[         
+        {"name":"Places",
+        "source":[{"name":"citiesAVD"},{"name":"Geonames", "dataValue":"geonames", "regexp":"\\d{4,}"}],
+        "type":[{"name":"http://erlangen-crm.org/current/E53_Place"}], 
+        "uriBase":"http://data.arxiuvalencia.eu/place/",
+        "properties":[
+            {"name":"id", "predicate":"identifier", "value":"[\"id\"]"},
+            {"name":"geonames", "predicate":"definedBy", "value":"[\"acf\"][\"enlace_geonames\"][\"url\"]"},
+            {"name":"name", "predicate":"http://www.geonames.org/ontology#name", "source":"Geonames", "value":"name"},  
+            {"name":"lat", "predicate":"http://www.w3.org/2003/01/geo/wgs84_pos#lat", "source":"Geonames", "value":"lat"},    
+            {"name":"long", "predicate":"http://www.w3.org/2003/01/geo/wgs84_pos#long", "source":"Geonames", "value":"lng"},   
+            {"name":"alternateNames", "predicate":"http://www.geonames.org/ontology#alternateName", "source":"Geonames", "value":"alternateNames"},
+            {"name":"fcode", "predicate":"http://data.arxiuvalencia.eu/place/fcode", "source":"Geonames", "value":"fcode"}
+            ]
+        },
+        {"name":"Person",
+         "source":[{"name":"personsAVD"}],         
+         "type":[{"name":"http://erlangen-crm.org/current/E21_Person"}],
+         "uriBase":"http://data.arxiuvalencia.eu/person/",         
+         "relatedTo":[{"name":"Places"},{"name":"E52_Time-Span2"}],  
+         "properties":[
+            {"name":"id", "predicate":"identifier", "value":"[\"id\"]"},
+            {"name":"nombre","predicate":"label", "value":"[\"acf\"][\"nombre\"]"},
+            {"name":"nacimiento", "predicate":"http://erlangen-crm.org/current/P116_starts", "value":"[\"acf\"][\"nacimiento\"]","relatedTo":"E52_Time-Span2"}, 
+            {"name":"muerte", "predicate":"http://erlangen-crm.org/current/P115_finishes", "value":"[\"acf\"][\"muerte\"]"}, 
+            {"name":"biografia", "predicate":"http://erlangen-crm.org/current/P3_has_note", "value":"[\"acf\"][\"biografia\"]"}, 
+            {"name":"imagen","predicate":"http://erlangen-crm.org/current/P138i_has_representation", "value":"[\"content\"][\"rendered\"]","useRegularExpression":"URL"},
+            {"name":"actividad", "predicate":"http://data.arxiuvalencia.eu/dimension/activity", "value":"[\"acf\"][\"actividad\"]"},            
+            {"name":"poblacion", "predicate":"http://erlangen-crm.org/current/P7_took_place_at", "value":"[\"acf\"][\"poblacion_de_nacimiento\"]", "relatedTo":"Places"}            
+         ]
+        }, 
+        {"name":"Organization",
+         "source":[{"name":"organizationsAVD"}],         
+         "type":[{"name":"http://erlangen-crm.org/current/E40_Legal_Body"}],
+         "uriBase":"http://data.arxiuvalencia.eu/organization/",  
+         "relatedTo":[{"name":"Places"}],       
+         "properties":[
+            {"name":"id", "predicate":"identifier", "value":"[\"id\"]"},
+            {"name":"nombre","predicate":"label", "value":"[\"acf\"][\"nombre\"]"},
+            {"name":"imagen","predicate":"http://erlangen-crm.org/current/P138i_has_representation", "value":"[\"content\"][\"rendered\"]","useRegularExpression":"URL"},
+            {"name":"creacion", "predicate":"http://erlangen-crm.org/current/P116_starts", "value":"[\"acf\"][\"creacion\"]"}, 
+            {"name":"cierre", "predicate":"http://erlangen-crm.org/current/P115_finishes", "value":"[\"acf\"][\"cierre\"]"}, 
+            {"name":"descripcion", "predicate":"http://erlangen-crm.org/current/P3_has_note", "value":"[\"acf\"][\"descripcion\"]"},             
+            {"name":"ambito","predicate":"http://data.arxiuvalencia.eu/dimension/ambit", "value":"[\"acf\"][\"ambito\"]"},
+            {"name":"poblacion", "predicate":"http://erlangen-crm.org/current/P74_has_current_or_former_residence", "value":"[\"acf\"][\"poblacion_de_la_sede\"]", "relatedTo":"Places"}
+         ]
+        },        
+        {"name":"Document",
+        "source":[{"name":"documentsAVD"}],         
+        "type":[{"name":"http://erlangen-crm.org/current/E22_Human-Made_Object"}],
+        "uriBase":"http://data.arxiuvalencia.eu/document/",
+        "relatedTo":[{"name":"E38_Image"},{"name":"Organization"}],
+        "properties":[
+            {"name":"id", "predicate":"identifier", "value":"[\"id\"]"},
+            {"name":"nombre","predicate":"label", "value":"[\"title\"][\"rendered\"]"},
+            {"name":"referencia","predicate":"referencia", "value":"[\"acf\"][\"codigo_de_referencia\"]"},
+            {"name":"signatura","predicate":"alternative", "value":"[\"acf\"][\"signatura\"]"},
+            {"name":"imagen","predicate":"http://erlangen-crm.org/current/P138i_has_representation", "value":"[\"content\"][\"rendered\"]","useRegularExpression":"URL"},
+            {"name":"descripcion","predicate":"http://erlangen-crm.org/current/P3_has_note","value":"[\"acf\"][\"descripcion_es\"]","lang":"es", "sourceFor":[{"name":"material"},{"name":"tecnica"},{"name":"componente"}]},            
+            {"name":"descripcion_va","predicate":"http://erlangen-crm.org/current/P3_has_note","value":"[\"acf\"][\"descripcion_va\"]","lang":"ca"},            
+            {"name":"descripcion_en","predicate":"http://erlangen-crm.org/current/P3_has_note","value":"[\"acf\"][\"descripcion_en\"]","lang":"en"},                                    
+            {"name":"empresa", "predicate":"http://erlangen-crm.org/current/P14_carried_out_by", "value":"[\"acf\"][\"empresa\"]", "relatedTo":"Organization"},
+            {"name":"alto", "predicate":"http://data.arxiuvalencia.eu/dimension/high", "value":"[\"acf\"][\"dimensiones\"][\"alto\"]"},
+            {"name":"length", "predicate":"http://data.arxiuvalencia.eu/dimension/length", "value":"[\"acf\"][\"dimensiones\"][\"largo\"]"},
+            {"name":"P65_Shows_VisualItem", "predicate":"http://erlangen-crm.org/current/P65_shows_visual_item"}
+            ]
+        },      
+        {"name":"Object",
+         "source":[{"name":"objectsAVD"}],         
+         "type":[{"name":"http://erlangen-crm.org/current/E55_Type"},{"name":"http://www.w3.org/2004/02/skos/core#Concept"}],
+         "uriBase":"http://data.arxiuvalencia.eu/ObjectType/",
+         "properties":[            
+            {"name":"id", "predicate":"identifier", "value":"[\"id\"]"},
+            {"name":"label", "predicate":"label", "value":"[\"name\"]"},
+            {"name":"defined","predicate":"http://www.w3.org/2000/01/rdf-schema#isDefinedBy","value":"[\"name\"]","relatedToTesauroTerm":"Object", "useRegularExpression":"STRING_CSV"}]
+        },              
+        {"name":"Product",
+         "source":[{"name":"productsAVD"},{"name":"TaxonomiesProduct", "dataValue":"id"}],         
+         "type":[{"name":"http://erlangen-crm.org/current/E22_Human-Made_Object"}],
+         "uriBase":"http://data.arxiuvalencia.eu/product/",
+         "relatedTo":[{"name":"E38_Image"},{"name":"E12_Production"},{"name":"Object"}],
+         "properties":[            
+            {"name":"id", "predicate":"identifier", "value":"[\"id\"]"},
+            {"name":"nombre","predicate":"label", "value":"[\"title\"][\"rendered\"]"},            
+            {"name":"n_registro", "predicate":"alternative", "value":"[\"acf\"][\"numero_registro\"]"},
+            {"name":"imagen","predicate":"http://erlangen-crm.org/current/P138i_has_representation", "value":"[\"content\"][\"rendered\"]","useRegularExpression":"URL"},
+            {"name":"material","value":"[\"acf\"][\"material\"]","relatedToTesauroTerm":"Material", "useRegularExpression":"STRING_CSV"},
+            {"name":"tecnica","value":"[\"acf\"][\"tecnica\"]","relatedToTesauroTerm":"Technique", "useRegularExpression":"STRING_CSV"},
+            {"name":"componente","relatedToTesauroTerm":"Technique"},
+            {"name":"descripcion","predicate":"http://erlangen-crm.org/current/P3_has_note","value":"[\"acf\"][\"descripcion_es\"]","lang":"es", "sourceFor":[{"name":"material"},{"name":"tecnica"},{"name":"componente"}]},            
+            {"name":"descripcion_va","predicate":"http://erlangen-crm.org/current/P3_has_note","value":"[\"acf\"][\"descripcion_va\"]","lang":"ca"},            
+            {"name":"descripcion_en","predicate":"http://erlangen-crm.org/current/P3_has_note","value":"[\"acf\"][\"descripcion_en\"]","lang":"en"},            
+            {"name":"production", "predicate":"http://erlangen-crm.org/current/P108i_was_produced_by", "relatedTo":"E12_Production"},
+            {"name":"lugarFabricacion", "value":"[\"acf\"][\"lugar_de_fabricacion\"]"},     
+            {"name":"lugarDiseno", "value":"[\"acf\"][\"lugar_de_diseno\"]"}, 
+            {"name":"fechaDiseno", "value":"[\"acf\"][\"fecha_de_diseno\"]"},
+            {"name":"fabricante", "value":"[\"acf\"][\"productorfabricante_nuevo\"]"},    
+            {"name":"color",  "predicate":"http://data.arxiuvalencia.eu/has_color", "value":"[\"acf\"][\"color\"]"},
+            {"name":"estilo", "predicate":"http://data.arxiuvalencia.eu/has_style","value":"[\"acf\"][\"estilo\"]"},
+            {"name":"tipologia","predicate":"http://erlangen-crm.org/current/P2_has_type", "source":"TaxonomiesProduct","value":"objeto","relatedTo":"Object"}            
+            ]
+        },                
+        {"name":"E38_Image",
+         "source":[{"name":"Product"}],
+         "type":[{"name":"http://erlangen-crm.org/current/E38_Image"}],
+         "uriBase":"http://data.arxiuvalencia.eu/image/",         
+         "properties":[
+            {"name":"id", "predicate":"identifier", "value":"auto", "generateFrom":[{"name":"schema:contentUrl"}]},
+            {"name":"schema:contentUrl", "predicate":"http://schema.org/contentUrl","value":"Product.imagen"},
+            {"name":"P138 has representation", "predicate":"http://erlangen-crm.org/current/P138i_has_representation", "value":"Product.id"}          
+         ]
+        },
+        {"name":"E12_Production",
+         "source":[{"name":"Product"}],         
+         "relatedTo":[{"name":"E52_Time-Span"},{"name":"Places"},{"name":"Person"},{"name":"Organization"}],
+         "type":[{"name":"http://erlangen-crm.org/current/E12_Production"}],
+         "uriBase":"http://data.arxiuvalencia.eu/production/",                 
+         "properties":[
+            {"name":"id","predicate":"identifier","value":"auto", "generateFrom":[{"name":"P108 has produced"},{"name":"P126 employed"}]},
+            {"name":"P108 has produced","predicate":"http://erlangen-crm.org/current/P108_has_produced", "inverse":"production", "value":"Product.id"},            
+            {"name":"P126 employed", "predicate":"http://erlangen-crm.org/current/P126_employed", "value":"Product.material"},
+            {"name":"P32 used technique", "predicate":"http://erlangen-crm.org/current/P32_used_general_technique", "value":"Product.tecnica"},
+            {"name":"P4 hastimespan", "predicate":"http://erlangen-crm.org/current/P4_has_time-span", "value":"Product.fechaDiseno", "relatedTo":"E52_Time-Span"},
+            {"name":"P7 took place at", "predicate":"http://erlangen-crm.org/current/P7_took_place_at", "value":"Product.lugarDiseno", "relatedTo":"Places"},
+            {"name":"P14 carried out byO", "predicate":"http://erlangen-crm.org/current/P14_carried_out_by", "value":"Product.fabricante", "relatedTo":"Organization"},
+            {"name":"P14 carried out byP", "predicate":"http://erlangen-crm.org/current/P14_carried_out_by", "value":"Product.fabricante", "relatedTo":"Person"}                         
+         ]
+        },        
+        {"name":"E52_Time-Span",
+         "source":[{"name":"E12_Production"}],
+         "relatedTo":[{"name":"Instant"}],
+         "type":[{"name":"http://erlangen-crm.org/current/E52_Time-Span"}],
+         "uriBase":"http://data.arxiuvalencia.eu/time-span/",          
+         "properties":[
+            {"name":"id", "predicate":"identifier", "value":"auto", "generateFrom":[{"name":"rdfs:label"}]},
+            {"name":"rdfs:label", "predicate":"label","value":"E12_Production.P4 hastimespan"},
+            {"name":"time:hasEnd", "predicate":"http://www.w3.org/2006/time#hasEnd","value":"E12_Production.P4 hastimespan", "relatedTo":"Instant"},            
+            {"name":"P4 is timespan of", "predicate":"http://erlangen-crm.org/current/P4i_is_time-span_of", "inverse":"P4 hastimespan", "value":"E12_Production.id"}     
+         ]
+        },
+        {"name":"E52_Time-Span2",
+         "source":[{"name":"Person"}],
+         "relatedTo":[{"name":"Instant2"}],
+         "type":[{"name":"http://erlangen-crm.org/current/E52_Time-Span"}],
+         "uriBase":"http://data.arxiuvalencia.eu/time-span/",          
+         "properties":[
+            {"name":"id", "predicate":"identifier", "value":"auto", "generateFrom":[{"name":"rdfs:label"}]},
+            {"name":"rdfs:label", "predicate":"label","value":"Person.nacimiento"},
+            {"name":"time:hasBeginning", "predicate":"http://www.w3.org/2006/time#hasBeginning","value":"Person.nacimiento", "relatedTo":"Instant2"},            
+            {"name":"P4 is timespan of", "predicate":"http://erlangen-crm.org/current/P4i_is_time-span_of", "inverse":"nacimiento", "value":"Person.id"}     
+         ]
+        },
+        {"name":"Instant2",
+        "source":[{"name":"E52_Time-Span2"}],
+        "type":[{"name":"http://www.w3.org/2006/time#Instant"}],
+        "uriBase":"http://data.arxiuvalencia.eu/time-span/end",          
+        "properties":[
+           {"name":"id", "predicate":"identifier", "value":"auto", "generateFrom":[{"name":"rdfs:label"}]},
+           {"name":"rdfs:label", "predicate":"label","value":"E52_Time-Span2.rdfs:label"},
+           {"name":"time:inXSDDate", "predicate":"http://www.w3.org/2006/time#inXSDDate","value":"E52_Time-Span2.rdfs:label"},
+           {"name":"is hasBeginning", "predicate":"http://www.w3.org/2006/is_time#haBeginning", "inverse":"time:hasBeginning", "value":"E52_Time-Span2.id"}            
+        ]
+       },
+        {"name":"Instant",
+         "source":[{"name":"E52_Time-Span"}],
+         "type":[{"name":"http://www.w3.org/2006/time#Instant"}],
+         "uriBase":"http://data.arxiuvalencia.eu/time-span/end",          
+         "properties":[
+            {"name":"id", "predicate":"identifier", "value":"auto", "generateFrom":[{"name":"rdfs:label"}]},
+            {"name":"rdfs:label", "predicate":"label","value":"E52_Time-Span.rdfs:label"},
+            {"name":"time:inXSDDate", "predicate":"http://www.w3.org/2006/time#inXSDDate","value":"E52_Time-Span.rdfs:label"},        
+            {"name":"is hasEnd", "predicate":"http://www.w3.org/2006/is_time#hasEnd", "inverse":"time:hasEnd", "value":"E52_Time-Span.id"}      
+         ]
+        }
+    ]
+    }
+}
